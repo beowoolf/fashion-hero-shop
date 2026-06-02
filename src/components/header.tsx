@@ -7,6 +7,7 @@ import { SearchIcon, UserIcon, CartIcon, MenuIcon, CloseIcon, HeartIcon } from "
 import { SearchModal } from "./search-modal";
 import { MegaMenuNav, MobileMegaMenuContent } from "./mega-menu";
 import { useAuth } from "./auth-provider";
+import { useSeller } from "./seller-provider";
 
 const secondaryLinks = [
   { label: "About", href: "/about" },
@@ -22,6 +23,7 @@ export function Header({ onCartOpen, cartCount = 0, wishlistCount = 0 }: HeaderP
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { user } = useAuth();
+  const { seller } = useSeller();
 
   return (
     <header className="bg-white sticky top-0 z-50 border-b border-black/5">
@@ -56,6 +58,12 @@ export function Header({ onCartOpen, cartCount = 0, wishlistCount = 0 }: HeaderP
               {link.label}
             </Link>
           ))}
+          <Link
+            href={seller ? "/seller/promotions" : "/seller/login"}
+            className="hidden lg:block text-[12px] text-charcoal hover:opacity-60 transition-opacity"
+          >
+            Panel sprzedawcy
+          </Link>
           <button
             aria-label="Search"
             className="p-1 hover:opacity-60 transition-opacity"
@@ -122,6 +130,13 @@ export function Header({ onCartOpen, cartCount = 0, wishlistCount = 0 }: HeaderP
               {link.label}
             </Link>
           ))}
+          <Link
+            href={seller ? "/seller/promotions" : "/seller/login"}
+            className="block text-sm py-2"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Panel sprzedawcy
+          </Link>
         </div>
       </div>
 

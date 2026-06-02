@@ -3,6 +3,9 @@ node_modules/
 .pnp
 .pnp.js
 
+# Local promotion data (demo persistence)
+.data/
+
 # Build
 .next/
 out/

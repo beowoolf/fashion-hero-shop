@@ -3472,6 +3472,10 @@ export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
+export function getProductById(id: string): Product | undefined {
+  return products.find((p) => p.id === id);
+}
+
 export function getProductsByCollection(collectionSlug: string): Product[] {
   const categoryMap: Record<string, string> = {
     socks: "socks",
@@ -3506,6 +3510,10 @@ export function getProductsBySeller(sellerSlug: string): Product[] {
   const seller = getSeller(sellerSlug);
   if (!seller) return [];
   return products.filter((p) => p.sellerId === seller.id);
+}
+
+export function getProductsBySellerId(sellerId: string): Product[] {
+  return products.filter((p) => p.sellerId === sellerId);
 }
 
 export const heroSlides: HeroSlide[] = [
